@@ -7519,13 +7519,13 @@ function map_obj(obj, fn){
   }, {})
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, "node_modules/7zip"))
+/* WEBPACK VAR INJECTION */}.call(exports, "node_modules/_7zip@0.0.6@7zip"))
 
 /***/ }),
 /* 46 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"7zip","version":"0.0.6","description":"7zip Windows Package via Node.js","keywords":["7z","7zip","7-zip","windows","install"],"repository":"git@github.com:fritx/win-7zip.git","bin":{"7z":"7zip-lite/7z.exe"},"main":"index.js","scripts":{"test":"mocha"},"license":"GNU LGPL"}
+module.exports = {"name":"7zip","version":"0.0.6","description":"7zip Windows Package via Node.js","keywords":["7z","7zip","7-zip","windows","install"],"repository":"git@github.com:fritx/win-7zip.git","bin":{"7z":"7zip-lite/7z.exe"},"main":"index.js","scripts":{"test":"mocha"},"license":"GNU LGPL","__npminstall_done":"Tue Apr 02 2019 20:21:26 GMT+0800 (GMT+08:00)","_from":"7zip@0.0.6","_resolved":"http://registry.npm.taobao.org/7zip/download/7zip-0.0.6.tgz"}
 
 /***/ }),
 /* 47 */

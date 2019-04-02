@@ -30,8 +30,10 @@ const state = {
     selectId: 1,
     // 得知当前选择的是哪个好友
     selectFriendId: 1,
-
-    robotKey: "c35e63602e1547c9880cc23805e7643d"
+    //图灵机器人key
+    robotKey: "c35e63602e1547c9880cc23805e7643d",
+    //侧边栏隐藏显示
+    isShow:false
 }
 
 const mutations = {
@@ -52,11 +54,17 @@ const mutations = {
     },
     // 得知用户当前选择的是哪个对话。便于匹配对应的对话框
     selectSession(state, value) {
+        state.isShow = false;
         state.selectId = value
     },
     // 得知用户当前选择的是哪个好友。
     selectFriend(state, value) {
+        state.isShow = false;
         state.selectFriendId = value
+    },
+    selectedUser(state, value) {
+        state.isShow = !state.isShow;
+        state.selectId = value;
     },
     // 发送信息
     sendMessage(state, msg) {
@@ -125,11 +133,20 @@ const getters = {
         let session = state.chatlist.find(session => session.id === state.selectId);
         return session
     },
+    //通过选择的好友ID合并对话用户
+    selectedUserList(state){
+        let users = state.chatlist.filter(user => user.id == state.selectId);
+        let toggleUserList = []
+        toggleUserList.push(state.user)
+        toggleUserList.push(users[0].user)
+        return toggleUserList;
+    },
     // 通过当前选择是哪个好友匹配相应的好友
     selectedFriend(state) {
         let friend = state.friendlist.find(friend => friend.id === state.selectFriendId);
         return friend
     },
+    //
     messages(state) {
         let session = state.chatlist.find(session => session.id === state.selectId);
         let messages = session.messages;
@@ -139,6 +156,9 @@ const getters = {
             }
         })
         return session.messages
+    },
+    showToggleBar(state){
+        return state.isShow
     }
 }
 
@@ -156,6 +176,7 @@ const actions = {
     selectFriend: ({
         commit
     }, value) => commit('selectFriend', value),
+    selectedUser:({commit},value) => commit('selectedUser',value),
     sendMessage: ({
         commit
     }, msg) => commit('sendMessage', msg),

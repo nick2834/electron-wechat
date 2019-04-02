@@ -45,9 +45,6 @@ export default {
         return date.getHours() + ":" + date.getMinutes();
       }
     }
-  },
-  mounted(){
-    console.log(this.searchedChatlist)
   }
 };
 </script>

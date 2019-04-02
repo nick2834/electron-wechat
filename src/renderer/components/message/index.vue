@@ -3,6 +3,7 @@
   <div class="message">
     <header class="header dragable">
       <div class="friendname">{{selectedChat.user.name}}</div>
+      <i class="iconfont icon-user" @click="selectedUser"></i>
     </header>
     <div class="message-wrapper" ref="list">
       <ul v-if="selectedChat">
@@ -54,8 +55,8 @@ const MenuItem = remote.MenuItem;
 import { mapGetters, mapState } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["selectedChat", "messages"]),
-    ...mapState(["user", "emojis"])
+    ...mapGetters(["selectedChat", "messages","selectedUserList"]),
+    ...mapState(["user", "emojis", "selectId"])
   },
   data() {
     return {
@@ -67,7 +68,6 @@ export default {
       this.$refs.list.scrollTop = this.$refs.list.scrollHeight;
     })
     this.initMenu();
-    console.log(this.messages)
   },
   watch: {
     // 发送信息后,让信息滚动到最下面
@@ -78,6 +78,9 @@ export default {
     }
   },
   methods: {
+    selectedUser() {
+      this.$store.dispatch("selectedUser",this.selectId);
+    },
     //  在发送信息之后，将输入的内容中属于表情的部分替换成emoji图片标签
     //  再经过v-html 渲染成真正的图片
     replaceFace(con) {
@@ -137,10 +140,18 @@ export default {
     // padding: 28px 0 0 30px;
     box-sizing: border-box;
     border-bottom: 1px solid #e7e7e7;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
     .friendname {
       font-size: 18px;
       line-height: 60px;
-      margin-left: 25px;
+      // margin-left: 25px;
+    }
+    .iconfont{
+      line-height: 60px;
+      font-size: 28px;
+      cursor: pointer;
     }
   }
   .message-wrapper {

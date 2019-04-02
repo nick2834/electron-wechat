@@ -97,6 +97,7 @@ body {
   }
   .chat_right{
     flex: 1;
+    position: relative;
   }
 }
 </style>

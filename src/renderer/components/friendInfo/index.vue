@@ -9,7 +9,7 @@
         <div class="left">
           <div class="people">
             <div class="nickname">{{selectedFriend.nickname}}</div>
-            <div :class="[selectedFriend.sex===1?'gender-male':'gender-female']"></div>
+            <i class="iconfont" :class="selectedFriend.sex===1?'icon-male':'icon-female'"></i>
           </div>
           <div class="signature">{{selectedFriend.signature}}</div>
         </div>
@@ -86,28 +86,23 @@ export default {
     .left {
       flex: 1;
       .people {
+        display: flex;
+        align-items: center;
+        height: 45px;
+        line-height: 45px;
         .nickname {
           display: inline-block;
           font-size: 20px;
-          margin-bottom: 16px;
+          margin-right: 5px;
         }
-
-        .gender-male,
-        .gender-female {
-          display: inline-block;
-          width: 18px;
-          height: 18px;
-          vertical-align: top;
-          margin-top: 2px;
+        .iconfont{
+          font-size: 18px;
         }
-
-        .gender-male {
-          background-image: url(man.png);
-          background-size: cover;
+        .icon-male {
+          color: #48b5ee;
         }
-        .gender-female {
-          background-image: url(woman.png);
-          background-size: cover;
+        .icon-female {
+          color: #f47e7d;
         }
       }
       .signature {

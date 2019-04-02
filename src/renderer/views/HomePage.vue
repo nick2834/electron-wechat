@@ -7,6 +7,7 @@
     <div class="chat_right">
         <message-box/>
         <chat-input/>
+        <toggle-bar/>
     </div>
   </el-container>
 </template>
@@ -15,12 +16,18 @@ import search from '@/components/search'
 import chatList from '@/components/chatlist'
 import messageBox from '@/components/message'
 import chatInput from '@/components/chatInput'
+import toggleBar from '@/components/toggleBar'
+import { mapGetters, mapState } from "vuex";
 export default {
     components:{
         search,
         chatList,
         messageBox,
-        chatInput
+        chatInput,
+        toggleBar
+    },
+    computed:{
+      ...mapState(['isShow'])
     }
 };
 </script>
