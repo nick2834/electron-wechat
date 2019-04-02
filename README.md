@@ -2,7 +2,7 @@
 
 ## 技术栈
 
-vue2 + vuex + vue-router + webpack + ES6/7 + scss + electron + electron-build + axios
+vue2 + vuex + vue-router + mockjs + webpack + ES6/7 + scss + electron + electron-build + axios
 
 ### 项目说明
 
