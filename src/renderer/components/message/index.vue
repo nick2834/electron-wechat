@@ -15,7 +15,7 @@
               class="avatar"
               width="36"
               height="36"
-              :src="item.self ? user.img : selectedChat.user.img"
+              :src="item.self ? user.avatar : selectedChat.user.avatar"
             >
             <div
               class="content"
@@ -67,6 +67,7 @@ export default {
       this.$refs.list.scrollTop = this.$refs.list.scrollHeight;
     })
     this.initMenu();
+    console.log(this.messages)
   },
   watch: {
     // 发送信息后,让信息滚动到最下面

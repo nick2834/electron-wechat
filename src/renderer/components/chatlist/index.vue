@@ -10,7 +10,7 @@
         :key="item.id"
       >
         <div class="list-left">
-          <img class="avatar" width="42" height="42" :alt="item.user.name" :src="item.user.img">
+          <img class="avatar" width="42" height="42" :alt="item.user.name" :src="item.user.avatar">
         </div>
         <div class="list-right">
           <p class="name">{{item.user.name}}</p>
@@ -45,13 +45,16 @@ export default {
         return date.getHours() + ":" + date.getMinutes();
       }
     }
+  },
+  mounted(){
+    console.log(this.searchedChatlist)
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .msglist {
-  height: 540px;
+  height: 650px;
   overflow-y: auto;
   .sessionlist {
     display: flex;

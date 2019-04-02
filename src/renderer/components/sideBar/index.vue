@@ -8,7 +8,9 @@
       <router-link to="news" tag="a" class="icon iconfont icon-friend"></router-link>
       <router-link to="user" tag="a" class="icon iconfont icon-collection"></router-link>
     </main>
-    <footer></footer>
+    <footer>
+      <i class="icon iconfont icon-more"></i>
+    </footer>
   </div>
 </template>
 <script>
@@ -27,6 +29,7 @@ export default {
   width: 70px;
   height: 100%;
   background: #2b2c2f;
+  position: relative;
   header {
     img {
       width: 48px;
@@ -41,7 +44,7 @@ export default {
     .icon {
       display: inline-block;
       font-size: 28px;
-      margin-top: 28px;
+      margin-top: 33px;
       padding: 0 16px;
       box-sizing: border-box;
       color: rgb(173, 174, 175);
@@ -56,6 +59,17 @@ export default {
     }
     .router-link-active{
         color: rgb(0, 220, 65);
+    }
+  }
+  footer{
+    position: absolute;
+    width: 100%;
+    bottom: 25px;
+    text-align: center;
+    .icon{
+      font-size: 28px;
+      color: #adaeaf;
+      cursor: pointer;
     }
   }
 }
