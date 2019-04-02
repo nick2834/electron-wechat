@@ -1,5 +1,9 @@
 # electron 微信
 
+## 技术栈
+
+vue2 + vuex + vue-router + webpack + ES6/7 + scss + electron + electron-build + axios
+
 ### 项目说明
 
 基于 electron-vue + element ui 仿微信客户端
@@ -43,6 +47,7 @@ src
 │   │   └── http.js
 │   │   └── index.js
 │   └── store
+│        ├── emoji.js
 │        ├── index.js
 static
 ├── emogi
@@ -59,7 +64,7 @@ yarn / npm install
 yarn run dev / npm run dev
 
 # 打包项目
-yarn run build:mac/yarn run build:win npm run build
+yarn run build/ npm run build
 ```
 
 ### 赞助我
