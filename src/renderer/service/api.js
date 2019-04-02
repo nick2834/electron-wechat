@@ -1,0 +1,1 @@
+export const getTulingApiUrl = 'http://www.tuling123.com/openapi/api' //获取聊天机器人域名
