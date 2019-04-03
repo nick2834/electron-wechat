@@ -98,12 +98,6 @@ export default {
         .iconfont{
           font-size: 18px;
         }
-        .icon-male {
-          color: #48b5ee;
-        }
-        .icon-female {
-          color: #f47e7d;
-        }
       }
       .signature {
         font-size: 14px;

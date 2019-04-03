@@ -42,7 +42,7 @@ export default {
 <style lang="scss" scoped>
 .wrapper {
   padding: 22px 12px 12px 12px;
-	background: #ffffff;
+	background: #f2f2f2;
 	border-bottom: #f2efee;
   .search-wrapper {
     position: relative;

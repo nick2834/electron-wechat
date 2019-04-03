@@ -3,6 +3,8 @@
   <div class="text">
     <div class="emoji">
       <i class="icon iconfont icon-look" @click="showEmoji=!showEmoji"></i>
+      <i class="icon iconfont icon-file" @click="showEmoji=!showEmoji"></i>
+      <i class="icon iconfont icon-cut" @click="showEmoji=!showEmoji"></i>
       <transition name="showbox">
         <div class="emojiBox" v-show="showEmoji">
           <li v-for="(item, index) in emojis" :key="index">
@@ -108,19 +110,19 @@ export default {
 .text {
   position: relative;
   height: 160px;
-  background: #fff;
+  background: #f2f2f2;
   .emoji {
     position: relative;
     width: 100%;
     height: 40px;
     line-height: 40px;
-    font-size: 12px;
-    padding: 0 30px;
+    padding: 0 20px;
     box-sizing: border-box;
     color: #7c7c7c;
-    .icon-look {
+    .iconfont {
       cursor: pointer;
-      font-size: 20px;
+      font-size: 23px;
+      margin-right: 10px;
       &:hover {
         color: #1aad19;
       }
@@ -150,14 +152,15 @@ export default {
   }
   textarea {
     box-sizing: border-box;
-    padding: 0 30px;
-    height: 110px;
+    padding: 0 20px;
+    height: 120px;
     width: 100%;
     border: none;
     outline: none;
     font-family: "Micrsofot Yahei";
     resize: none;
     font-size: 14px;
+    background: #f2f2f2
   }
   .warn {
     position: absolute;

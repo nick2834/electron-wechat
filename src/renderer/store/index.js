@@ -36,8 +36,10 @@ const state = {
     isShow: false,
 
     toggleUserList: [],
-
-    isMe: false
+    toggleUser:{},
+    toggleShow:false,
+    //当前选择人员的wxid
+    selectedWxid:Users.wxid
 }
 
 const mutations = {
@@ -64,11 +66,13 @@ const mutations = {
     // 得知用户当前选择的是哪个好友。
     selectFriend(state, value) {
         state.isShow = false;
+        state.toggleShow = false;
         state.selectFriendId = value
     },
     selectedUser(state, value) {
         state.isShow = !state.isShow;
         state.selectId = value;
+        state.toggleShow = false
     },
     // 发送信息
     sendMessage(state, msg) {
@@ -121,15 +125,21 @@ const mutations = {
             path: '/main/home'
         })
     },
+    //展开收缩侧边栏
     hideToggleBar(state, value) {
         state.isShow = value;
+        state.toggleShow = false
     },
+    //选择侧边栏获取对应人员
     showToggleUser(state, value) {
-        if (value.isMe) {
-            state.isMe = value.isMe
-        } else {
-            state.isMe = false
-        }
+        state.toggleShow = false;
+        state.selectedWxid = value.wxid
+        state.toggleShow = true;
+        state.toggleUser = value;
+    },
+    //显示对应人员详情窗口
+    hideToggleModal(state, value){
+        state.toggleShow = value
     }
 }
 const getters = {
@@ -153,19 +163,10 @@ const getters = {
         let users = state.chatlist.filter(user => user.id == state.selectId);
         let toggleUserList = []
         users[0].user.id = users[0].id
-        state.user.isMe = true
         toggleUserList.push(state.user)
         toggleUserList.push(users[0].user)
-        state.toggleUserList = toggleUserList
+        state.toggleUserList = toggleUserList;
         return state.toggleUserList;
-    },
-    toggleUser(state) {
-        if (state.isMe) {
-            return state.user
-        } else {
-            let friend = state.friendlist.find(friend => friend.id === state.selectFriendId);
-            return friend
-        }
     },
     // 通过当前选择是哪个好友匹配相应的好友
     selectedFriend(state) {

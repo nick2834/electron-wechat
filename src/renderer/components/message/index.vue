@@ -2,7 +2,7 @@
 <template>
   <div class="message">
     <header class="header dragable">
-      <div class="friendname">{{selectedChat.user.name}}</div>
+      <div class="friendname" @dblclick="selectedUser">{{selectedChat.user.name}}</div>
       <i class="iconfont icon-user" @click="selectedUser" @click.stop></i>
     </header>
     <div class="message-wrapper" ref="list">
@@ -55,7 +55,7 @@ const MenuItem = remote.MenuItem;
 import { mapGetters, mapState } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["selectedChat", "messages","selectedUserList"]),
+    ...mapGetters(["selectedChat", "messages"]),
     ...mapState(["user", "emojis", "selectId"])
   },
   data() {
