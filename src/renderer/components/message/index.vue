@@ -17,6 +17,8 @@
               width="36"
               height="36"
               :src="item.self ? user.avatar : selectedChat.user.avatar"
+              @mousedown="mousedown"
+              @click.stop="showToggleUser(item.self ? user: selectedChat.user)"
             >
             <div
               class="content"
@@ -64,9 +66,9 @@ export default {
     };
   },
   mounted() {
-    this.$nextTick(() =>{
+    this.$nextTick(() => {
       this.$refs.list.scrollTop = this.$refs.list.scrollHeight;
-    })
+    });
     this.initMenu();
   },
   watch: {
@@ -79,7 +81,7 @@ export default {
   },
   methods: {
     selectedUser() {
-      this.$store.dispatch("selectedUser",this.selectId);
+      this.$store.dispatch("selectedUser", this.selectId);
     },
     //  在发送信息之后，将输入的内容中属于表情的部分替换成emoji图片标签
     //  再经过v-html 渲染成真正的图片
@@ -113,6 +115,12 @@ export default {
     },
     getCurrentWindow() {
       this.menu.popup(remote.getCurrentWindow());
+    },
+    showToggleUser(item) {
+      this.$store.commit("showToggleUser", item);
+    },
+    mousedown(e) {
+      this.$store.commit("getMousePosition", e);
     }
   },
   filters: {
@@ -148,7 +156,7 @@ export default {
       line-height: 60px;
       // margin-left: 25px;
     }
-    .iconfont{
+    .iconfont {
       line-height: 60px;
       font-size: 28px;
       cursor: pointer;

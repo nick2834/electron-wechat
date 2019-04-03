@@ -9,6 +9,7 @@
       <chat-input/>
       <toggle-bar/>
     </div>
+    <toggle-user-modal />
   </el-container>
 </template>
 <script>
@@ -17,17 +18,15 @@ import chatList from "@/components/chatlist";
 import messageBox from "@/components/message";
 import chatInput from "@/components/chatInput";
 import toggleBar from "@/components/toggleBar";
-import { mapGetters, mapState, mapActions } from "vuex";
+import toggleUserModal from "@/components/toggleUserModal";
 export default {
   components: {
     search,
     chatList,
     messageBox,
     chatInput,
-    toggleBar
-  },
-  computed: {
-    ...mapState(["isShow"])
+    toggleBar,
+    toggleUserModal
   },
   methods:{
     hideToggleBar(){

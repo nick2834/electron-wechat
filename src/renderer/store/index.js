@@ -36,10 +36,14 @@ const state = {
     isShow: false,
 
     toggleUserList: [],
-    toggleUser:{},
-    toggleShow:false,
+    toggleUser: {},
+    toggleShow: false,
     //当前选择人员的wxid
-    selectedWxid:Users.wxid
+    selectedWxid: Users.wxid,
+    //鼠标点击位置
+    clientX: 0,
+    //鼠标点击位置
+    clientY: 0
 }
 
 const mutations = {
@@ -77,7 +81,6 @@ const mutations = {
     // 发送信息
     sendMessage(state, msg) {
         let result = state.chatlist.find(session => session.id === state.selectId);
-
         result.messages.push({
             content: msg.content,
             date: new Date(),
@@ -110,7 +113,10 @@ const mutations = {
                 user: {
                     name: result.remark,
                     avatar: result.avatar,
-                    wxid: result.wxid
+                    wxid: result.wxid,
+                    area: result.area,
+                    sex: result.sex,
+                    id: result.id
                 },
                 messages: [{
                     content: '已经置顶聊天，可以给我发信息啦！',
@@ -138,8 +144,20 @@ const mutations = {
         state.toggleUser = value;
     },
     //显示对应人员详情窗口
-    hideToggleModal(state, value){
+    hideToggleModal(state, value) {
         state.toggleShow = value
+    },
+    //获取鼠标当前点击位置
+    getMousePosition(state, value) {
+        console.log(state)
+        if(980 - value.clientX < 338){
+            // state.clientX = 980 - 338 - 20 - 36 + 'px'; //计算自己点击自己头像时候  弹窗位置
+            state.clientX = '586px'; //计算自己点击自己头像时候  弹窗位置
+        }else{
+            state.clientX = value.clientX + 'px'
+        }
+        
+        state.clientY = value.clientY + 'px'
     }
 }
 const getters = {
