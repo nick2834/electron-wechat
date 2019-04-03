@@ -66,9 +66,9 @@ yarn run dev / npm run dev
 # 打包项目
 yarn run build/ npm run build
 ```
-
+<!-- 
 ### 赞助我
 
-如果觉得这些内容不错，请我喝杯咖啡吧。
+如果觉得这些内容不错，请我喝杯咖啡吧。 -->
 
 <!-- ![pay](./screenshot/pay.png) -->
