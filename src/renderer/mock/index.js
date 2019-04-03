@@ -1,10 +1,11 @@
 import Mock from 'mockjs';
 const Users = {
     id: 1,
-    username: '283448189',
-    password: '123456',
     name: 'nico',
-    avatar: 'static/images/UserAvatar.jpg'
+    avatar: 'static/images/UserAvatar.jpg',
+    area: Mock.Random.city(true), //地区
+    sex: Mock.Random.integer(0, 1), //性别 1为男，0为女
+    wxid: Mock.Random.name(), //微信号
 };
 
 const msgList = [];

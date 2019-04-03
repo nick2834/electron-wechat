@@ -33,7 +33,11 @@ const state = {
     //图灵机器人key
     robotKey: "c35e63602e1547c9880cc23805e7643d",
     //侧边栏隐藏显示
-    isShow:false
+    isShow: false,
+
+    toggleUserList: [],
+
+    isMe: false
 }
 
 const mutations = {
@@ -44,7 +48,7 @@ const mutations = {
         if (data) {
             state.chatlist = JSON.parse(data);
         }
-        if(friendlist){
+        if (friendlist) {
             state.friendlist = JSON.parse(friendlist)
         }
     },
@@ -93,15 +97,16 @@ const mutations = {
         let msg = state.chatlist.find(msg => msg.user.name === result.remark)
         if (!msg) {
             state.selectId = 1
-            state.chatlist.map(item =>{
-                item.id ++;
-                item.index ++;
+            state.chatlist.map(item => {
+                item.id++;
+                item.index++;
             })
             state.chatlist.unshift({
                 id: 1,
                 user: {
                     name: result.remark,
-                    avatar: result.avatar
+                    avatar: result.avatar,
+                    wxid: result.wxid
                 },
                 messages: [{
                     content: '已经置顶聊天，可以给我发信息啦！',
@@ -115,6 +120,16 @@ const mutations = {
         router.push({
             path: '/main/home'
         })
+    },
+    hideToggleBar(state, value) {
+        state.isShow = value;
+    },
+    showToggleUser(state, value) {
+        if (value.isMe) {
+            state.isMe = value.isMe
+        } else {
+            state.isMe = false
+        }
     }
 }
 const getters = {
@@ -134,12 +149,23 @@ const getters = {
         return session
     },
     //通过选择的好友ID合并对话用户
-    selectedUserList(state){
+    selectedUserList(state) {
         let users = state.chatlist.filter(user => user.id == state.selectId);
         let toggleUserList = []
+        users[0].user.id = users[0].id
+        state.user.isMe = true
         toggleUserList.push(state.user)
         toggleUserList.push(users[0].user)
-        return toggleUserList;
+        state.toggleUserList = toggleUserList
+        return state.toggleUserList;
+    },
+    toggleUser(state) {
+        if (state.isMe) {
+            return state.user
+        } else {
+            let friend = state.friendlist.find(friend => friend.id === state.selectFriendId);
+            return friend
+        }
     },
     // 通过当前选择是哪个好友匹配相应的好友
     selectedFriend(state) {
@@ -152,12 +178,12 @@ const getters = {
         let messages = session.messages;
         messages.map(item => {
             if (item.messageType == 302000) {
-                item.content = item.content.filter((items,index) => index <= 2);
+                item.content = item.content.filter((items, index) => index <= 2);
             }
         })
         return session.messages
     },
-    showToggleBar(state){
+    showToggleBar(state) {
         return state.isShow
     }
 }
@@ -176,7 +202,12 @@ const actions = {
     selectFriend: ({
         commit
     }, value) => commit('selectFriend', value),
-    selectedUser:({commit},value) => commit('selectedUser',value),
+    selectedUser: ({
+        commit
+    }, value) => commit('selectedUser', value),
+    selectedUser: ({
+        commit
+    }, value) => commit('selectedUser', value),
     sendMessage: ({
         commit
     }, msg) => commit('sendMessage', msg),

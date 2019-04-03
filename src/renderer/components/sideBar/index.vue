@@ -1,5 +1,5 @@
 <template>
-  <div class="side_bar dragable">
+  <div class="side_bar dragable" @click.stop="hideToggleBar">
     <header>
       <img :src="userAvatar" alt>
     </header>
@@ -20,6 +20,11 @@ export default {
     return {
       userAvatar: userAvatar
     };
+  },
+  methods:{
+    hideToggleBar(){
+      this.$store.commit('hideToggleBar',false)
+    }
   }
 };
 </script>

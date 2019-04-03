@@ -3,7 +3,7 @@
   <div class="message">
     <header class="header dragable">
       <div class="friendname">{{selectedChat.user.name}}</div>
-      <i class="iconfont icon-user" @click="selectedUser"></i>
+      <i class="iconfont icon-user" @click="selectedUser" @click.stop></i>
     </header>
     <div class="message-wrapper" ref="list">
       <ul v-if="selectedChat">
