@@ -1,16 +1,12 @@
 import {
     app,
     BrowserWindow,
-    ipcMain,
-    Menu
+    Menu,
 } from 'electron';
-const mainURL = process.env.NODE_ENV === 'development' ?
-    `http://localhost:9080/#main/home` :
-    `file://${__dirname}/index.html#main/home`
-export let mainWindow = null;
+import {mainURL} from './config'
+let mainWindow = null
 
-
-export function createMainWindow() {
+function createMainWindow() {
     mainWindow = new BrowserWindow({
         height: 710,
         useContentSize: true,
@@ -84,4 +80,9 @@ export function createMainWindow() {
         ]
     }];
     Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+}
+
+export {
+    mainWindow,
+    createMainWindow
 }
